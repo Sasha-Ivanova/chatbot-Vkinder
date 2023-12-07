@@ -1,0 +1,4 @@
+.idea/
+__pycache__/
+VK/__pycache__/
+db/__pycache__/
