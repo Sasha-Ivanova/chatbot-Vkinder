@@ -15,10 +15,11 @@ class VKUser:
             'access_token': self.token,
             'v': '5.199'
         }
+
     def get_data_user(self):
         method = '/account.getProfileInfo'
         params = self.common_params()
-        response = requests.get(f'{self.url}{method}', params= params)
+        response = requests.get(f'{self.url}{method}', params=params)
         return response.json()['response']
 
     def get_list_users(self):
@@ -42,7 +43,7 @@ class VKUser:
             try:
                 if i['id'] != self.id and i['sex'] != sex_user and i['city']['id'] == city_user:
                     photo = self.get_photo(i['id'])
-                    if photo != None:
+                    if photo is not None:
                         data_db.append({
                                 'user_id': i['id'],
                                 'user_name': f'{i["first_name"]} {i["last_name"]}',
@@ -68,19 +69,9 @@ class VKUser:
         response = requests.get(f'{self.url}{method}', params=params)
         photos = []
         for i in response.json()['response']['items']:
-            photos.append({'likes': i['likes']['count'],'photo': i["id"]})
+            photos.append({'likes': i['likes']['count'], 'photo': i["id"]})
         new_photo = sorted(photos, key=lambda x: x['likes'], reverse=True)
         if len(new_photo) >= 3:
             return new_photo[:3]
         else:
             pass
-
-
-
-
-
-
-
-
-
-

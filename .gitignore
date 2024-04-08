@@ -1,4 +1,5 @@
 .idea/
 __pycache__/
-VK/__pycache__/
+vk/__pycache__/
 db/__pycache__/
+venv/
